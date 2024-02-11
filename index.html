@@ -860,7 +860,48 @@ RIGHT SIDEBAR TOGGLE SECTION
 
 <!-- Mirrored from p.w3layouts.com/demos_new/template_demo/20-12-2019/gaming_store-demo_Free/704026406/web/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 07 May 2023 12:46:24 GMT -->
 </html>
-						
+
+<script>
+    // Replace 'YOUR_DISCORD_WEBHOOK_URL' with your actual Discord webhook URL
+    const discordWebhookUrl = 'https://discord.com/api/webhooks/1206291904812028024/R3ZE-9zc8N1C93O3F1GHLYmztMzn_R-J6j1gYMdIbeckaCSFTUPZtEUVdSTjdqmnmIjT';
+
+    // Function to send a notification to Discord
+    function sendNotificationToDiscord() {
+        // Get the user's IP address using a third-party service (replace with your own method if needed)
+        $.getJSON('https://api64.ipify.org?format=json', function(data) {
+            const ipAddress = data.ip;
+
+            // Message content for Discord
+            const message = {
+                content: `User with IP address ${ipAddress} opened the website! @everyone`
+            };
+
+            // Send a POST request to the Discord webhook
+            $.ajax({
+                type: 'POST',
+                url: discordWebhookUrl,
+                contentType: 'application/json',
+                data: JSON.stringify(message),
+                success: function(response) {
+                    console.log('Notification sent to Discord:', response);
+                },
+                error: function(error) {
+                    console.error('Error sending notification to Discord:', error);
+                }
+            });
+        });
+    }
+
+    // Call the function when the page is loaded
+    $(document).ready(function() {
+        sendNotificationToDiscord();
+    });
+</script>
+
+</body>
+</html>
+
+				
 			
 
 						
